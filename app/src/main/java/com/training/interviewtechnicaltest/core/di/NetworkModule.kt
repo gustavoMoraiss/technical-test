@@ -1,5 +1,6 @@
 package com.training.interviewtechnicaltest.core.di
 
+import com.training.interviewtechnicaltest.BuildConfig
 import com.training.interviewtechnicaltest.core.data.remote.service.ParamsInterceptor
 import com.training.interviewtechnicaltest.core.data.remote.service.PullRequestsService
 import com.training.interviewtechnicaltest.core.data.remote.service.RepositoriesService
@@ -28,15 +29,18 @@ object NetworkModule {
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().apply {
             setLevel(
-                HttpLoggingInterceptor.Level.BODY
+                if (BuildConfig.DEBUG) {
+                    HttpLoggingInterceptor.Level.BODY
+                } else {
+                    HttpLoggingInterceptor.Level.NONE
+                }
             )
         }
     }
 
     @Provides
     fun provideOkHttpClient(
-        paramsInterceptor: ParamsInterceptor,
-        loggingInterceptor: HttpLoggingInterceptor
+        paramsInterceptor: ParamsInterceptor, loggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(paramsInterceptor)
@@ -53,27 +57,17 @@ object NetworkModule {
 
     @Provides
     fun provideRepositoriesService(
-        client: OkHttpClient,
-        converterFactory: GsonConverterFactory
+        client: OkHttpClient, converterFactory: GsonConverterFactory
     ): RepositoriesService {
-        return Retrofit.Builder()
-            .baseUrl("https://api.github.com/")
-            .client(client)
-            .addConverterFactory(converterFactory)
-            .build()
-            .create(RepositoriesService::class.java)
+        return Retrofit.Builder().baseUrl("https://api.github.com/").client(client)
+            .addConverterFactory(converterFactory).build().create(RepositoriesService::class.java)
     }
 
     @Provides
     fun providePullRequestsService(
-        client: OkHttpClient,
-        converterFactory: GsonConverterFactory
+        client: OkHttpClient, converterFactory: GsonConverterFactory
     ): PullRequestsService {
-        return Retrofit.Builder()
-            .baseUrl("https://api.github.com/")
-            .client(client)
-            .addConverterFactory(converterFactory)
-            .build()
-            .create(PullRequestsService::class.java)
+        return Retrofit.Builder().baseUrl("https://api.github.com/").client(client)
+            .addConverterFactory(converterFactory).build().create(PullRequestsService::class.java)
     }
 }
