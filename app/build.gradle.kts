@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -95,28 +97,28 @@ dependencies {
     implementation("androidx.paging:paging-compose:1.0.0-alpha18")
 
     // Coroutines
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
     // Coroutine Lifecycle Scopes
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
     // Retrofit
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
-    implementation ("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
 
     //DI - Hilt
-    implementation ("com.google.dagger:hilt-android:2.45")
-    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
-//    kapt ("com.google.dagger:hilt-compiler:2.45")
-//    kapt ("androidx.hilt:hilt-compiler:1.0.0")
+    implementation("com.google.dagger:hilt-android:2.45")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    kapt ("com.google.dagger:hilt-compiler:2.45")
+    kapt ("androidx.hilt:hilt-compiler:1.0.0")
 
     //Room
-    implementation ("androidx.room:room-ktx:2.4.2")
-    implementation ("androidx.room:room-runtime:2.4.2")
-//    kapt ("androidx.room:room-compiler:2.4.2")
+    implementation("androidx.room:room-ktx:2.4.2")
+    implementation("androidx.room:room-runtime:2.4.2")
+    kapt ("androidx.room:room-compiler:2.4.2")
 }
