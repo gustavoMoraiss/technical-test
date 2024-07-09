@@ -78,7 +78,7 @@ fun RepositoryItem(
             {
                 AsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)
-                        .data(repository.owner.avatarUrl)
+                        .data(repository.owner?.avatarUrl ?: "")
                         .crossfade(true)
                         .error(R.drawable.ic_launcher_background)
                         .placeholder(R.drawable.ic_launcher_foreground).build(),
@@ -93,15 +93,15 @@ fun RepositoryItem(
             }
             Column(modifier = Modifier.padding(4.dp)) {
                 Text(
-                    text = repository.name,
+                    text = repository.name ?: "",
                     style = MaterialTheme.typography.titleLarge
                 )
                 Text(
-                    text = repository.description,
+                    text = repository.description ?: "",
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Text(
-                    text = repository.fullName,
+                    text = repository.fullName ?: "",
                     style = MaterialTheme.typography.bodyMedium
                 )
                 AnimatedVisibility(visible = expanded) {
@@ -123,17 +123,17 @@ fun RepositoryItem(
 
                         HorizontalDivider(modifier = Modifier.padding(3.dp))
                         Text(
-                            text = "Authored by: ${repository.owner.login}",
+                            text = "Authored by: ${repository.owner?.login ?: ""}",
                             style = MaterialTheme.typography.bodyMedium
                         )
                         Row {
                             RepositoryRate(
                                 icon = Icons.Default.Star,
-                                value = repository.forksCount
+                                value = repository.forksCount ?: 0
                             )
                             RepositoryRate(
                                 icon = Icons.Default.Star,
-                                value = repository.stargazersCount
+                                value = repository.stargazersCount ?: 0
                             )
                         }
                     }

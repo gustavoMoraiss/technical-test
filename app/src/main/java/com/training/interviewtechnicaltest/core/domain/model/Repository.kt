@@ -5,19 +5,19 @@ import com.training.interviewtechnicaltest.core.data.remote.model.OwnerResult
 
 data class Repository(
     @SerializedName("forks_count")
-    val forksCount: Int,
+    val forksCount: Int?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("stargazers_count")
-    val stargazersCount: Int,
+    val stargazersCount: Int?,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("full_name")
-    val fullName: String,
+    val fullName: String?,
     @SerializedName("forks_url")
-    val forksUrl: String,
+    val forksUrl: String?,
     @SerializedName("stargazers_url")
-    val stargazersUrl: String,
+    val stargazersUrl: String?,
     @SerializedName("owner")
-    val owner: OwnerResult,
+    val owner: OwnerResult?,
 )
