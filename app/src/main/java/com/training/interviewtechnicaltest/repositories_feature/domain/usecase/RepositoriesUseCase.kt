@@ -4,7 +4,9 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.training.interviewtechnicaltest.core.domain.model.Repository
 import com.training.interviewtechnicaltest.repositories_feature.domain.repository.RepositoriesRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 interface RepositoriesUseCase {
@@ -20,6 +22,6 @@ class RepositoriesUseCaseImpl @Inject constructor(
                 pageSize = 20,
                 initialLoadSize = 20
             )
-        )
+        ).flowOn(Dispatchers.IO)
     }
 }

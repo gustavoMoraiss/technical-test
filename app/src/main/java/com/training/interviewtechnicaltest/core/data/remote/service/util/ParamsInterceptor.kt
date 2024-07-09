@@ -1,4 +1,4 @@
-package com.training.interviewtechnicaltest.core.data.remote.service
+package com.training.interviewtechnicaltest.core.data.remote.service.util
 
 import com.training.interviewtechnicaltest.core.util.Constants
 import okhttp3.Interceptor

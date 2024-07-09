@@ -13,12 +13,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RepositoriesViewModel @Inject constructor(
-    repositoriesUseCase: RepositoriesUseCase
+    private val repositoriesUseCase: RepositoriesUseCase
 ) : ViewModel() {
     var uiState by mutableStateOf(RepositoriesState())
         private set
 
     init {
+        getRepositories()
+    }
+
+    private fun getRepositories() {
         val repositories = repositoriesUseCase.invoke()
             .cachedIn(viewModelScope)
         uiState = uiState.copy(repositories = repositories)

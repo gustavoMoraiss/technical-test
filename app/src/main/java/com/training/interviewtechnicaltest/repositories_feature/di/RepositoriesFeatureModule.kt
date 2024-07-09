@@ -1,6 +1,7 @@
 package com.training.interviewtechnicaltest.repositories_feature.di
 
 import com.training.interviewtechnicaltest.core.data.remote.service.RepositoriesService
+import com.training.interviewtechnicaltest.core.data.remote.service.util.SafeApiCaller
 import com.training.interviewtechnicaltest.repositories_feature.data.repository.RepositoriesRepositoryImpl
 import com.training.interviewtechnicaltest.repositories_feature.data.source.RepositoriesRemoteDataSourceImpl
 import com.training.interviewtechnicaltest.repositories_feature.domain.repository.RepositoriesRepository
@@ -17,10 +18,15 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RepositoriesFeatureModule {
 
+
+
     @Provides
     @Singleton
-    fun provideRepositoriesRemoteDataSource(service: RepositoriesService): RepositoriesRemoteDataSource {
-        return RepositoriesRemoteDataSourceImpl(service = service)
+    fun provideRepositoriesRemoteDataSource(
+        service: RepositoriesService,
+        safeApiCaller: SafeApiCaller
+    ): RepositoriesRemoteDataSource {
+        return RepositoriesRemoteDataSourceImpl(service = service, safeApiCaller = safeApiCaller)
     }
 
     @Provides

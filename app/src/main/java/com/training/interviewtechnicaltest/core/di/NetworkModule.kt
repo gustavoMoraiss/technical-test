@@ -1,13 +1,16 @@
 package com.training.interviewtechnicaltest.core.di
 
 import com.training.interviewtechnicaltest.BuildConfig
-import com.training.interviewtechnicaltest.core.data.remote.service.ParamsInterceptor
+import com.training.interviewtechnicaltest.core.data.remote.service.util.ParamsInterceptor
 import com.training.interviewtechnicaltest.core.data.remote.service.PullRequestsService
 import com.training.interviewtechnicaltest.core.data.remote.service.RepositoriesService
+import com.training.interviewtechnicaltest.core.data.remote.service.util.SafeApiCaller
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -21,21 +24,23 @@ object NetworkModule {
     private const val TIMEOUT_SECONDS = 15L
 
     @Provides
-    fun provideParamsInterceptor(): ParamsInterceptor {
-        return ParamsInterceptor()
+    fun provideBackgroundDispatcher(): CoroutineDispatcher = Dispatchers.IO
+
+    @Provides
+    fun provideSafeApiCaller(backgroundDispatcher: CoroutineDispatcher): SafeApiCaller {
+        return SafeApiCaller(backgroundDispatcher)
     }
 
     @Provides
-    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
-        return HttpLoggingInterceptor().apply {
-            setLevel(
-                if (BuildConfig.DEBUG) {
-                    HttpLoggingInterceptor.Level.BODY
-                } else {
-                    HttpLoggingInterceptor.Level.NONE
-                }
-            )
-        }
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
+        val httpLoggingInterceptor = HttpLoggingInterceptor()
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        return httpLoggingInterceptor
+    }
+
+    @Provides
+    fun provideParamsInterceptor(): ParamsInterceptor {
+        return ParamsInterceptor()
     }
 
     @Provides
