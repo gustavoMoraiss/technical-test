@@ -81,7 +81,7 @@ fun RepositoryItem(
                         .data(repository.owner.avatarUrl)
                         .crossfade(true)
                         .error(R.drawable.ic_launcher_background)
-                        .placeholder(R.drawable.ic_launcher_foreground),
+                        .placeholder(R.drawable.ic_launcher_foreground).build(),
                     contentDescription = "image icon",
                     contentScale = ContentScale.FillHeight,
                     modifier = Modifier

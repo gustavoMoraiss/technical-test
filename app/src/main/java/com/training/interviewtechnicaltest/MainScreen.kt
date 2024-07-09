@@ -11,9 +11,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.training.interviewtechnicaltest.repositories_feature.presentation.RepositoriesScreen
+import com.training.interviewtechnicaltest.repositories_feature.presentation.RepositoriesViewModel
+import com.training.interviewtechnicaltest.repositories_feature.presentation.state.RepositoriesState
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -31,7 +35,18 @@ private fun NavigationGraph(navController: NavHostController) {
         navController = navController,
         startDestination = "Repositories"
     ) {
-        composable(route = "Repositories") {}
+        composable(route = "Repositories") {
+
+            val viewModel: RepositoriesViewModel = hiltViewModel()
+            val uiState: RepositoriesState = viewModel.uiState
+
+            RepositoriesScreen(
+                uiState = uiState,
+                navigateToPullRequest = {
+                    navController.navigate("PullRequests")
+                }
+            )
+        }
         composable(route = "PullRequests") {}
     }
 }
