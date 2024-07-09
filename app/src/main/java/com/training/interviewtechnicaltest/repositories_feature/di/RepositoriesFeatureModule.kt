@@ -18,8 +18,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RepositoriesFeatureModule {
 
-
-
     @Provides
     @Singleton
     fun provideRepositoriesRemoteDataSource(
