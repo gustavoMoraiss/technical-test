@@ -7,6 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -93,21 +94,26 @@ fun RepositoryItem(
                         .clip(RoundedCornerShape(corner = CornerSize(16.dp))),
                 )
             }
-            Column(modifier = Modifier.padding(8.dp)) {
+            Column(modifier = Modifier.padding(12.dp)) {
                 Text(
                     text = repository.name ?: "",
                     style = MaterialTheme.typography.titleLarge,
                     color = white
                 )
 
+                Spacer(modifier = Modifier.size(8.dp))
+
                 Text(
                     text = String.format("Description: %s", repository.description ?: ""),
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.labelSmall,
                     color = white
                 )
+
+                Spacer(modifier = Modifier.size(4.dp))
+
                 Text(
                     text = repository.fullName ?: "",
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.bodyLarge,
                     color = white
 
                 )
@@ -119,6 +125,9 @@ fun RepositoryItem(
                             style = MaterialTheme.typography.bodyMedium,
                             color = white
                         )
+
+                        Spacer(modifier = Modifier.size(4.dp))
+
                         Row {
                             RepositoryRate(
                                 icon = Icons.Default.Star,
