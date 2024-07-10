@@ -12,10 +12,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import com.training.interviewtechnicaltest.R
 import com.training.interviewtechnicaltest.core.components.ErrorView
 import com.training.interviewtechnicaltest.core.components.LoadingView
 import com.training.interviewtechnicaltest.core.domain.model.Repository
@@ -28,20 +33,28 @@ fun RepositoryContent(
     paddingValues: PaddingValues,
     navHostController: NavController
 ) {
+
+    val context = LocalContext.current
+
     Box(modifier = modifier.background(Color.Black)) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(1),
             contentPadding = paddingValues,
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             verticalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .clearAndSetSemantics {
+                    contentDescription =
+                        context.getString(R.string.repository_content_description_lazy_vertical_grid)
+                }
         ) {
             items(pagingRepositories.itemCount) { index ->
                 val repository = pagingRepositories[index]
                 repository?.let { repo ->
                     RepositoryItem(
                         repository = repo,
-                        navHostController = navHostController
+                        navHostController = navHostController,
                     )
                 }
             }
@@ -69,7 +82,7 @@ fun RepositoryContent(
                             span = { GridItemSpan(maxLineSpan) }
                         ) {
                             ErrorView(
-                                message = "Verifique sua conexão com a internet",
+                                message = stringResource(id = R.string.repository_content_error_message),
                                 retry = {
                                     retry()
                                 })
@@ -81,7 +94,7 @@ fun RepositoryContent(
                             span = { GridItemSpan(maxLineSpan) }
                         ) {
                             ErrorView(
-                                message = "Verifique sua conexão com a internet",
+                                message = stringResource(id = R.string.repository_content_error_message),
                                 retry = {
                                     retry()
                                 })

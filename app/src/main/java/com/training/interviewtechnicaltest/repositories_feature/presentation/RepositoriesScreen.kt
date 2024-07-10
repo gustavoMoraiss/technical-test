@@ -32,7 +32,7 @@ fun RepositoriesScreen(
                         color = yellow
                     )
                 },
-                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = black)
+                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = black),
             )
         },
         content = { paddingValues ->

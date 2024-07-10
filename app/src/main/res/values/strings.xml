@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Interview Technical Test</string>
+
+    //RepositoryContent
+    <string name="repository_content_description_lazy_vertical_grid">Responsável por listar todos os repositórios</string>
+    <string name="repository_content_error_message">"Verifique sua conexão com a internet"</string>
+
+    //RepositoryItem
+    <string name="repository_item_description_outlined_card">Responsável por representar a junção do Card de cada Repository.</string>
+    <string name="repository_item_description_avatar_image">Foto de perfil do repositório.</string>
+    <string name="repository_item_description_repository_name">Nome do repositório.</string>
+    <string name="repository_item_description_repository_description">Descrição do repositório.</string>
+    <string name="repository_item_description_repository_full_name">Nome completo do repositório</string>
+    <string name="repository_item_description_repository_forks_count">Número de Forks do repositório.</string>
+    <string name="repository_item_description_repository_stars_count">Números de Stars do repositório.</string>
+    <string name="repository_item_description_repository_icon_button">Ícone responsável por mostrar os detalhes do repositório</string>
+
 </resources>

@@ -13,7 +13,7 @@ fun MainNavigationGraph(
 ) {
     NavHost(
         navController = navHostController,
-        startDestination = repositoriesScreenRoute
+        startDestination = repositoriesScreenRoute,
     ) {
         repositoriesScreen(navHostController = navHostController)
         pullRequestsScreen(navHostController = navHostController)

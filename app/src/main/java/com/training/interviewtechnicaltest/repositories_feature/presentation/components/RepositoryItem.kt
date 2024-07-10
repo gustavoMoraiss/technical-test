@@ -38,6 +38,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
@@ -55,6 +58,9 @@ fun RepositoryItem(
     repository: Repository,
     navHostController: NavController,
 ) {
+
+    val context = LocalContext.current
+
     var expanded by remember {
         mutableStateOf(false)
     }
@@ -67,13 +73,17 @@ fun RepositoryItem(
                     author = repository.owner?.login ?: "",
                     repo = repository.name ?: ""
                 )
+            }
+            .clearAndSetSemantics {
+                contentDescription =
+                    context.getString(R.string.repository_item_description_outlined_card)
             },
         colors = CardDefaults.cardColors(
             containerColor = black,
         ),
         border = BorderStroke(1.dp, yellow),
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),
-        elevation = CardDefaults.cardElevation(8.dp)
+        elevation = CardDefaults.cardElevation(8.dp),
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -98,14 +108,22 @@ fun RepositoryItem(
                         .fillMaxWidth()
                         .align(Alignment.CenterVertically)
                         .background(Color.Black)
-                        .clip(RoundedCornerShape(corner = CornerSize(16.dp))),
+                        .clip(RoundedCornerShape(corner = CornerSize(16.dp)))
+                        .clearAndSetSemantics {
+                            contentDescription =
+                                context.getString(R.string.repository_item_description_avatar_image)
+                        },
                 )
             }
             Column(modifier = Modifier.padding(12.dp)) {
                 Text(
                     text = repository.name ?: "",
                     style = MaterialTheme.typography.titleLarge,
-                    color = white
+                    color = white,
+                    modifier = Modifier.clearAndSetSemantics {
+                        contentDescription =
+                            context.getString(R.string.repository_item_description_repository_name)
+                    }
                 )
 
                 Spacer(modifier = Modifier.size(8.dp))
@@ -113,7 +131,11 @@ fun RepositoryItem(
                 Text(
                     text = String.format("Description: %s", repository.description ?: ""),
                     style = MaterialTheme.typography.labelSmall,
-                    color = white
+                    color = white,
+                    modifier = Modifier.clearAndSetSemantics {
+                        contentDescription =
+                            context.getString(R.string.repository_item_description_repository_description)
+                    }
                 )
 
                 Spacer(modifier = Modifier.size(4.dp))
@@ -121,7 +143,11 @@ fun RepositoryItem(
                 Text(
                     text = repository.fullName ?: "",
                     style = MaterialTheme.typography.bodyLarge,
-                    color = white
+                    color = white,
+                    modifier = Modifier.clearAndSetSemantics {
+                        contentDescription =
+                            context.getString(R.string.repository_item_description_repository_full_name)
+                    }
 
                 )
                 AnimatedVisibility(visible = expanded) {
@@ -138,12 +164,20 @@ fun RepositoryItem(
                         Row {
                             RepositoryRate(
                                 icon = Icons.Default.ForkLeft,
-                                value = repository.forksCount ?: 0
+                                value = repository.forksCount ?: 0,
+                                modifier = Modifier.clearAndSetSemantics {
+                                    contentDescription =
+                                        context.getString(R.string.repository_item_description_repository_forks_count)
+                                }
                             )
                             Spacer(modifier = Modifier.size(8.dp))
                             RepositoryRate(
                                 icon = Icons.Default.Star,
-                                value = repository.stargazersCount ?: 0
+                                value = repository.stargazersCount ?: 0,
+                                modifier = Modifier.clearAndSetSemantics {
+                                    contentDescription =
+                                        context.getString(R.string.repository_item_description_repository_stars_count)
+                                }
                             )
                         }
                     }
@@ -158,6 +192,10 @@ fun RepositoryItem(
                         .size(24.dp)
                         .clickable {
                             expanded = !expanded
+                        }
+                        .clearAndSetSemantics {
+                            contentDescription =
+                                context.getString(R.string.repository_item_description_repository_icon_button)
                         },
                     tint = Color.DarkGray
                 )
