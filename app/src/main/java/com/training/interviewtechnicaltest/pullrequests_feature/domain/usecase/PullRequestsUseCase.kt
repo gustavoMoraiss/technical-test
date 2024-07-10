@@ -13,13 +13,13 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 interface PullRequestsUseCase {
-    suspend operator fun invoke(author: String, repo: String): ResultData<PullRequestResponse>
+    suspend operator fun invoke(author: String, repo: String): ResultData<List<PullRequestResponse?>>
 }
 
 class PullRequestsUseCaseImpl @Inject constructor(
     private val repository: PullRequestsRepository
 ) : PullRequestsUseCase {
-    override suspend fun invoke(author: String, repo: String): ResultData<PullRequestResponse> {
+    override suspend fun invoke(author: String, repo: String): ResultData<List<PullRequestResponse?>> {
         return repository.getPullRequestsFromRepository(
             author = author,
             repo = repo

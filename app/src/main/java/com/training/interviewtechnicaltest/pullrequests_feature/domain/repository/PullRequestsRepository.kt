@@ -11,5 +11,5 @@ interface PullRequestsRepository {
     suspend fun getPullRequestsFromRepository(
         author: String,
         repo: String
-    ): ResultData<PullRequestResponse>
+    ): ResultData<List<PullRequestResponse?>>
 }

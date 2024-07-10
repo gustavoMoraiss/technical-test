@@ -19,7 +19,7 @@ class PullRequestsRepositoryImpl constructor(
     override suspend fun getPullRequestsFromRepository(
         author: String,
         repo: String
-    ): ResultData<PullRequestResponse> {
+    ): ResultData<List<PullRequestResponse?>> {
         return remoteDataSource.getPullRequests(
             author = author,
             repo = repo

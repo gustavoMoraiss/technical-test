@@ -49,7 +49,7 @@ import com.training.interviewtechnicaltest.ui.theme.yellow
 @Composable
 fun RepositoryItem(
     repository: Repository,
-    onItemClick: (String) -> Unit = {}
+    onItemClick: () -> Unit = {}
 ) {
     var expanded by remember {
         mutableStateOf(false)
@@ -59,7 +59,7 @@ fun RepositoryItem(
             .padding(4.dp)
             .fillMaxWidth()
             .clickable {
-                onItemClick("")
+                onItemClick()
             },
         colors = CardDefaults.cardColors(
             containerColor = black,

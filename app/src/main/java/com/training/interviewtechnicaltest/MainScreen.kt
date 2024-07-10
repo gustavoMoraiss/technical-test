@@ -7,6 +7,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
@@ -15,6 +17,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.training.interviewtechnicaltest.pullrequests_feature.presentation.PullRequestsScreen
+import com.training.interviewtechnicaltest.pullrequests_feature.presentation.PullRequestsViewModel
+import com.training.interviewtechnicaltest.pullrequests_feature.presentation.state.PullRequestsUiState
 import com.training.interviewtechnicaltest.repositories_feature.presentation.RepositoriesScreen
 import com.training.interviewtechnicaltest.repositories_feature.presentation.RepositoriesViewModel
 import com.training.interviewtechnicaltest.repositories_feature.presentation.state.RepositoriesState
@@ -47,6 +52,13 @@ private fun NavigationGraph(navController: NavHostController) {
                 }
             )
         }
-        composable(route = "PullRequests") {}
+        composable(route = "PullRequests") {
+
+            val viewModel: PullRequestsViewModel = hiltViewModel()
+            val uiState by viewModel.uiState.collectAsState()
+
+            PullRequestsScreen(uiState = uiState, {})
+
+        }
     }
 }

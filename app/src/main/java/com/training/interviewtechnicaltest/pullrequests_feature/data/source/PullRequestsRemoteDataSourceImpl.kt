@@ -25,8 +25,8 @@ class PullRequestsRemoteDataSourceImpl @Inject constructor(
     override suspend fun getPullRequests(
         author: String,
         repo: String
-    ): ResultData<PullRequestResponse> {
-        var result: ResultData<PullRequestResponse> =
+    ): ResultData<List<PullRequestResponse?>> {
+        var result: ResultData<List<PullRequestResponse?>> =
             ResultData.APIError(APIException(actionErrorType = ActionErrorTypeEnum.HTTP_ERROR))
 
         safeApiCaller.safeApiCall {

@@ -38,7 +38,7 @@ fun RepositoryContent(
             items(pagingRepositories.itemCount) { index ->
                 val repository = pagingRepositories[index]
                 repository?.let { repo ->
-                    RepositoryItem(repository = repo, onItemClick = {})
+                    RepositoryItem(repository = repo, onItemClick = { onClick() })
                 }
             }
 

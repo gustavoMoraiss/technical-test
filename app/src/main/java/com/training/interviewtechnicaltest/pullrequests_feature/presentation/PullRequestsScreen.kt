@@ -1,5 +1,6 @@
-package com.training.interviewtechnicaltest.repositories_feature.presentation
+package com.training.interviewtechnicaltest.pullrequests_feature.presentation
 
+import android.annotation.SuppressLint
 import android.provider.CalendarContract
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -11,19 +12,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.training.interviewtechnicaltest.R
+import com.training.interviewtechnicaltest.pullrequests_feature.presentation.state.PullRequestsUiState
 import com.training.interviewtechnicaltest.repositories_feature.presentation.components.RepositoryContent
 import com.training.interviewtechnicaltest.repositories_feature.presentation.state.RepositoriesState
 import com.training.interviewtechnicaltest.ui.theme.black
 import com.training.interviewtechnicaltest.ui.theme.white
 import com.training.interviewtechnicaltest.ui.theme.yellow
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RepositoriesScreen(
-    uiState: RepositoriesState,
-    navigateToPullRequest: () -> Unit
+fun PullRequestsScreen(
+    uiState: PullRequestsUiState,
+    navigateToRepositories: () -> Unit
 ) {
-    val repositories = uiState.repositories.collectAsLazyPagingItems()
 
     Scaffold(
         topBar = {
@@ -37,12 +39,8 @@ fun RepositoriesScreen(
                 colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = black)
             )
         },
-        content = { paddingValues ->
-            RepositoryContent(
-                pagingRepositories = repositories,
-                paddingValues = paddingValues,
-                onClick = { navigateToPullRequest() }
-            )
+        content = {
+            Text(text = "")
         })
 
 

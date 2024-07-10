@@ -7,5 +7,5 @@ import com.training.interviewtechnicaltest.core.paging.RepositoriesPageSource
 
 interface PullRequestsRemoteDataSource {
 
-    suspend fun getPullRequests(author: String, repo: String): ResultData<PullRequestResponse>
+    suspend fun getPullRequests(author: String, repo: String): ResultData<List<PullRequestResponse?>>
 }
