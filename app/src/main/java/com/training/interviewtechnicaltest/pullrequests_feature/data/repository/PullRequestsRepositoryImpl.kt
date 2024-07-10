@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.training.interviewtechnicaltest.core.data.remote.response.pullrequests.PullRequestResponse
 import com.training.interviewtechnicaltest.core.data.remote.service.util.ResultData
+import com.training.interviewtechnicaltest.core.domain.model.PullRequest
 import com.training.interviewtechnicaltest.core.domain.model.Repository
 import com.training.interviewtechnicaltest.pullrequests_feature.domain.repository.PullRequestsRepository
 import com.training.interviewtechnicaltest.pullrequests_feature.domain.source.PullRequestsRemoteDataSource
@@ -19,7 +20,7 @@ class PullRequestsRepositoryImpl constructor(
     override suspend fun getPullRequestsFromRepository(
         author: String,
         repo: String
-    ): ResultData<List<PullRequestResponse?>> {
+    ): ResultData<List<PullRequest?>> {
         return remoteDataSource.getPullRequests(
             author = author,
             repo = repo

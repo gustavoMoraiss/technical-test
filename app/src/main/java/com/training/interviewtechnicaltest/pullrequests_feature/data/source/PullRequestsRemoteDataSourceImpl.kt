@@ -11,7 +11,9 @@ import com.training.interviewtechnicaltest.core.data.remote.service.util.SafeApi
 import com.training.interviewtechnicaltest.core.data.remote.service.util.onEmpty
 import com.training.interviewtechnicaltest.core.data.remote.service.util.onError
 import com.training.interviewtechnicaltest.core.data.remote.service.util.onSuccess
+import com.training.interviewtechnicaltest.core.domain.model.PullRequest
 import com.training.interviewtechnicaltest.core.paging.RepositoriesPageSource
+import com.training.interviewtechnicaltest.pullrequests_feature.data.mapper.toPullRequestList
 import com.training.interviewtechnicaltest.pullrequests_feature.domain.source.PullRequestsRemoteDataSource
 import com.training.interviewtechnicaltest.repositories_feature.domain.source.RepositoriesRemoteDataSource
 import javax.inject.Inject
@@ -25,8 +27,8 @@ class PullRequestsRemoteDataSourceImpl @Inject constructor(
     override suspend fun getPullRequests(
         author: String,
         repo: String
-    ): ResultData<List<PullRequestResponse?>> {
-        var result: ResultData<List<PullRequestResponse?>> =
+    ): ResultData<List<PullRequest?>> {
+        var result: ResultData<List<PullRequest?>> =
             ResultData.APIError(APIException(actionErrorType = ActionErrorTypeEnum.HTTP_ERROR))
 
         safeApiCaller.safeApiCall {
@@ -35,7 +37,7 @@ class PullRequestsRemoteDataSourceImpl @Inject constructor(
                 repo = repo
             )
         }.onSuccess { pullRequestResponse ->
-            result = ResultData.Success(pullRequestResponse)
+            result = ResultData.Success(pullRequestResponse.toPullRequestList())
         }.onEmpty {
             result = ResultData.Empty()
         }.onError {

@@ -4,7 +4,7 @@ import com.training.interviewtechnicaltest.core.data.remote.response.repositorie
 
 data class HeadResult(
     @SerializedName("user")
-    val user: OwnerResult,
+    val user: OwnerResult? = null,
     @SerializedName("repo")
-    val repo: RepositoriesResponse
+    val repo: RepositoriesResponse? = null
 )

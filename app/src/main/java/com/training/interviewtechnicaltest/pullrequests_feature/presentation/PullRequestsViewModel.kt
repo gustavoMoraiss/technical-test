@@ -1,6 +1,5 @@
 package com.training.interviewtechnicaltest.pullrequests_feature.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.training.interviewtechnicaltest.core.data.remote.service.util.onError

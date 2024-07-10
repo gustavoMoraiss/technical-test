@@ -41,6 +41,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.training.interviewtechnicaltest.R
 import com.training.interviewtechnicaltest.core.data.remote.response.pullrequests.PullRequestResponse
+import com.training.interviewtechnicaltest.core.domain.model.PullRequest
 import com.training.interviewtechnicaltest.core.util.UtilFunctions.formatDateAPI
 import com.training.interviewtechnicaltest.ui.theme.black
 import com.training.interviewtechnicaltest.ui.theme.white
@@ -49,7 +50,7 @@ import com.training.interviewtechnicaltest.ui.theme.yellow
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun PullRequestItem(
-    pullRequest: PullRequestResponse?,
+    pullRequest: PullRequest?,
     onItemClick: () -> Unit = {}
 ) {
     var expanded by remember {

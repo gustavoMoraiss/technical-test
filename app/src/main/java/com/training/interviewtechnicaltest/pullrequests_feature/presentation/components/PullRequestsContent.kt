@@ -21,13 +21,14 @@ import androidx.paging.compose.LazyPagingItems
 import com.training.interviewtechnicaltest.core.components.ErrorScreen
 import com.training.interviewtechnicaltest.core.components.LoadingView
 import com.training.interviewtechnicaltest.core.data.remote.response.pullrequests.PullRequestResponse
+import com.training.interviewtechnicaltest.core.domain.model.PullRequest
 import com.training.interviewtechnicaltest.core.domain.model.Repository
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun PullRequestsContent(
     modifier: Modifier = Modifier,
-    pullRequests: List<PullRequestResponse?>,
+    pullRequests: List<PullRequest?>,
     paddingValues: PaddingValues,
     onClick: () -> Unit
 ) {
