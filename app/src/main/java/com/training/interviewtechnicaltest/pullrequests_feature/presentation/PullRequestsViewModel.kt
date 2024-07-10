@@ -20,6 +20,17 @@ class PullRequestsViewModel @Inject constructor(
     private val pullRequestsUseCase: PullRequestsUseCase
 ) : ViewModel() {
 
+    private val _authorMutableStateFlow = MutableStateFlow("")
+
+    val authorMutableStateFlow: StateFlow<String>
+        get() = _authorMutableStateFlow
+
+
+    private val _repoMutableStateFlow = MutableStateFlow("")
+
+    val repoMutableStateFlow: StateFlow<String>
+        get() = _repoMutableStateFlow
+
     private val _uiState = MutableStateFlow<PullRequestsUiState>(
         PullRequestsUiState.Loading
     )
@@ -27,14 +38,14 @@ class PullRequestsViewModel @Inject constructor(
     val uiState: StateFlow<PullRequestsUiState>
         get() = _uiState.asStateFlow()
 
-    fun getPullRequests(author: String?, repo: String?) {
+    fun getPullRequests() {
         _uiState.update {
             PullRequestsUiState.Loading
         }
         viewModelScope.launch(Dispatchers.IO) {
             pullRequestsUseCase.invoke(
-                author = author!!,
-                repo = repo!!
+                author = _authorMutableStateFlow.value,
+                repo = _repoMutableStateFlow.value
             ).onSuccess { pullRequestResponse ->
                 _uiState.update {
                     PullRequestsUiState.SuccessPullRequestsUiState(
@@ -47,5 +58,10 @@ class PullRequestsViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun saveValues(author: String, repo: String) {
+        _authorMutableStateFlow.value = author
+        _repoMutableStateFlow.value = repo
     }
 }

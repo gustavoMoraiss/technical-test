@@ -19,16 +19,7 @@ class RepositoriesViewModel @Inject constructor(
     private val repositoriesUseCase: RepositoriesUseCase
 ) : ViewModel() {
 
-    private val _authorMutableStateFlow = MutableStateFlow("")
 
-    val authorMutableStateFlow: StateFlow<String>
-        get() = _authorMutableStateFlow
-
-
-    private val _repoMutableStateFlow = MutableStateFlow("")
-
-    val repoMutableStateFlow: StateFlow<String>
-        get() = _repoMutableStateFlow
 
     var uiState by mutableStateOf(RepositoriesState())
         private set
@@ -47,8 +38,4 @@ class RepositoriesViewModel @Inject constructor(
          }
     }
 
-    fun setOnClickRepositoryItem(author: String, repo: String) {
-        _authorMutableStateFlow.value = author
-        _repoMutableStateFlow.value = repo
-    }
 }

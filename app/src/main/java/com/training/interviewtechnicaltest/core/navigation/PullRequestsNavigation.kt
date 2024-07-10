@@ -36,12 +36,17 @@ fun NavGraphBuilder.pullRequestsScreen(
         val viewModel: PullRequestsViewModel = hiltViewModel<PullRequestsViewModel>()
         val uiState by viewModel.uiState.collectAsState()
 
-        viewModel.getPullRequests(author = authorName, repo = repoName)
+        viewModel.saveValues(
+            author = authorName!!,
+            repo = repoName!!
+        )
+
+        viewModel.getPullRequests()
 
         PullRequestsScreen(
             uiState = uiState,
             navigateToRepositories = { navHostController.navigateToRepositoriesScreen() },
-            retryRequest = { viewModel.getPullRequests(author = authorName, repo = repoName) }
+            retryRequest = { viewModel.getPullRequests() }
         )
     }
 }
