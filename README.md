@@ -30,5 +30,6 @@ The requirements:
 #### Paging 3: For pagination of data.
 #### Jetpack Compose: For building UI screens declaratively.
 #### JUnit, Mockito: For unit testing.
+#### All Screens contains accessibility.
 
 
