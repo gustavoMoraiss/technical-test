@@ -3,6 +3,7 @@ package com.training.interviewtechnicaltest.core.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -12,6 +13,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.training.interviewtechnicaltest.ui.theme.white
+import com.training.interviewtechnicaltest.ui.theme.yellow
 
 @Composable
 fun ErrorScreen(
@@ -33,8 +35,8 @@ fun ErrorScreen(
             color = white
         )
 
-        Button(onClick = retry) {
-            Text(text = "Recarregar")
+        Button(onClick = retry, colors = ButtonDefaults.buttonColors(yellow)) {
+            Text(text = "Recarregar", color = white)
         }
     }
 }
@@ -42,7 +44,5 @@ fun ErrorScreen(
 @Preview
 @Composable
 fun ErrorScreenPreview() {
-    ErrorScreen(message = "Tente novamente.") {
-
-    }
+    ErrorScreen(message = "Tente novamente.", retry = {})
 }

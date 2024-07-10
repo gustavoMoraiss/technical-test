@@ -12,6 +12,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.training.interviewtechnicaltest.R
+import com.training.interviewtechnicaltest.core.components.ErrorScreen
+import com.training.interviewtechnicaltest.core.components.LoadingView
+import com.training.interviewtechnicaltest.pullrequests_feature.presentation.components.PullRequestsContent
 import com.training.interviewtechnicaltest.pullrequests_feature.presentation.state.PullRequestsUiState
 import com.training.interviewtechnicaltest.repositories_feature.presentation.components.RepositoryContent
 import com.training.interviewtechnicaltest.repositories_feature.presentation.state.RepositoriesState
@@ -40,7 +43,27 @@ fun PullRequestsScreen(
             )
         },
         content = {
-            Text(text = "")
+            when (uiState) {
+                is PullRequestsUiState.Loading -> {
+                    LoadingView()
+                }
+
+                is PullRequestsUiState.Error -> {
+                    ErrorScreen(
+                        message = "Verifique sua conexão com a internet",
+                        retry = {
+
+                        })
+                }
+
+                is PullRequestsUiState.SuccessPullRequestsUiState -> {
+                    PullRequestsContent(
+                        pullRequests = uiState.pullRequests,
+                        paddingValues = it,
+                        onClick = { navigateToRepositories() }
+                    )
+                }
+            }
         })
 
 
