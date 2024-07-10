@@ -29,10 +29,10 @@ class PullRequestsViewModel @Inject constructor(
         get() = _uiState.asStateFlow()
 
     init {
-        getPullRequests("krahets", "hello-algo")
+        getPullRequests()
     }
 
-    private fun getPullRequests(author: String, repo: String) {
+     fun getPullRequests(author: String = "krahets", repo: String = "hello-algo") {
         _uiState.update {
             PullRequestsUiState.Loading
         }

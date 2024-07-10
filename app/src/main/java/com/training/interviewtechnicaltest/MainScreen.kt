@@ -57,8 +57,10 @@ private fun NavigationGraph(navController: NavHostController) {
             val viewModel: PullRequestsViewModel = hiltViewModel()
             val uiState by viewModel.uiState.collectAsState()
 
-            PullRequestsScreen(uiState = uiState, {})
-
+            PullRequestsScreen(
+                uiState = uiState,
+                navigateToRepositories = {},
+                retryRequest = { viewModel.getPullRequests() })
         }
     }
 }

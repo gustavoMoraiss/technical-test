@@ -14,26 +14,25 @@ import com.training.interviewtechnicaltest.ui.theme.black
 import com.training.interviewtechnicaltest.ui.theme.yellow
 
 @Composable
-fun ErrorScreen(
+fun LoadingScreen(
     modifier: Modifier = Modifier,
-    message: String,
-    retry: () -> Unit,
 ) {
     Box(
         modifier = modifier
             .fillMaxSize()
             .background(black)
     ) {
-        ErrorView(
-            message = message,
-            retry = retry,
-            modifier = modifier.align(Alignment.Center)
+        CircularProgressIndicator(
+            modifier = modifier
+                .size(40.dp)
+                .align(Alignment.Center),
+            color = yellow
         )
     }
 }
 
 @Preview
 @Composable
-fun ErrorScreenPreview() {
-    ErrorScreen(message = "Tente novamente.", retry = {})
+fun LoadingScreenPreview() {
+    LoadingScreen()
 }
