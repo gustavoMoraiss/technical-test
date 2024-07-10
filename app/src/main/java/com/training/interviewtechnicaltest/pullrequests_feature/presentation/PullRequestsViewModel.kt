@@ -27,18 +27,14 @@ class PullRequestsViewModel @Inject constructor(
     val uiState: StateFlow<PullRequestsUiState>
         get() = _uiState.asStateFlow()
 
-    init {
-        getPullRequests()
-    }
-
-     fun getPullRequests(author: String = "krahets", repo: String = "hello-algo") {
+    fun getPullRequests(author: String?, repo: String?) {
         _uiState.update {
             PullRequestsUiState.Loading
         }
         viewModelScope.launch(Dispatchers.IO) {
             pullRequestsUseCase.invoke(
-                author = author,
-                repo = repo
+                author = author!!,
+                repo = repo!!
             ).onSuccess { pullRequestResponse ->
                 _uiState.update {
                     PullRequestsUiState.SuccessPullRequestsUiState(

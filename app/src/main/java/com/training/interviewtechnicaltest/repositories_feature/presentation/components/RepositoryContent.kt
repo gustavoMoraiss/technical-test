@@ -13,18 +13,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.training.interviewtechnicaltest.core.components.ErrorView
 import com.training.interviewtechnicaltest.core.components.LoadingView
 import com.training.interviewtechnicaltest.core.domain.model.Repository
+import com.training.interviewtechnicaltest.repositories_feature.presentation.RepositoriesViewModel
 
 @Composable
 fun RepositoryContent(
     modifier: Modifier = Modifier,
     pagingRepositories: LazyPagingItems<Repository>,
     paddingValues: PaddingValues,
-    onClick: () -> Unit
+    navHostController: NavController
 ) {
     Box(modifier = modifier.background(Color.Black)) {
         LazyVerticalGrid(
@@ -37,7 +39,10 @@ fun RepositoryContent(
             items(pagingRepositories.itemCount) { index ->
                 val repository = pagingRepositories[index]
                 repository?.let { repo ->
-                    RepositoryItem(repository = repo, onItemClick = { onClick() })
+                    RepositoryItem(
+                        repository = repo,
+                        navHostController = navHostController
+                    )
                 }
             }
 

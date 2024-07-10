@@ -7,6 +7,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.training.interviewtechnicaltest.R
 import com.training.interviewtechnicaltest.repositories_feature.presentation.components.RepositoryContent
@@ -18,7 +19,7 @@ import com.training.interviewtechnicaltest.ui.theme.yellow
 @Composable
 fun RepositoriesScreen(
     uiState: RepositoriesState,
-    navigateToPullRequest: () -> Unit
+    navHostController: NavController
 ) {
     val repositories = uiState.repositories.collectAsLazyPagingItems()
 
@@ -38,7 +39,7 @@ fun RepositoriesScreen(
             RepositoryContent(
                 pagingRepositories = repositories,
                 paddingValues = paddingValues,
-                onClick = { navigateToPullRequest() }
+                navHostController = navHostController
             )
         })
 

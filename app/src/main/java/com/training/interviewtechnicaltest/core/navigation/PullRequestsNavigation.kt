@@ -7,7 +7,9 @@ import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.training.interviewtechnicaltest.pullrequests_feature.presentation.PullRequestsScreen
 import com.training.interviewtechnicaltest.pullrequests_feature.presentation.PullRequestsViewModel
 import com.training.interviewtechnicaltest.repositories_feature.presentation.RepositoriesScreen
@@ -15,24 +17,35 @@ import com.training.interviewtechnicaltest.repositories_feature.presentation.Rep
 import com.training.interviewtechnicaltest.repositories_feature.presentation.state.RepositoriesState
 
 const val pullRequestsScreenRoute = "pullRequestsScreenRoute"
+const val authorArgument = "authorArgument"
+const val repoArgument = "repoArgument"
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun NavGraphBuilder.pullRequestsScreen(
     navHostController: NavController
 ) {
-    composable(pullRequestsScreenRoute) {
+    composable(route = "${pullRequestsScreenRoute}/{$authorArgument}/{$repoArgument}",
+        arguments = listOf(
+            navArgument("authorArgument") { type = NavType.StringType },
+            navArgument("repoArgument") { type = NavType.StringType }
+        )) { backStackEntry ->
 
-        val viewModel: PullRequestsViewModel = hiltViewModel()
+        val authorName = backStackEntry.arguments?.getString("authorArgument")
+        val repoName = backStackEntry.arguments?.getString("repoArgument")
+
+        val viewModel: PullRequestsViewModel = hiltViewModel<PullRequestsViewModel>()
         val uiState by viewModel.uiState.collectAsState()
+
+        viewModel.getPullRequests(author = authorName, repo = repoName)
 
         PullRequestsScreen(
             uiState = uiState,
             navigateToRepositories = { navHostController.navigateToRepositoriesScreen() },
-            retryRequest = { viewModel.getPullRequests() })
-
+            retryRequest = { viewModel.getPullRequests(author = authorName, repo = repoName) }
+        )
     }
 }
 
-fun NavController.navigateToPullRequestsScreen() {
-    navigate(route = pullRequestsScreenRoute)
+fun NavController.navigateToPullRequestsScreen(author: String, repo: String) {
+    navigate(route = "${pullRequestsScreenRoute}/$author/$repo")
 }

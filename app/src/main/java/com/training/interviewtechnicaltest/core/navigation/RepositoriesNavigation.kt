@@ -20,9 +20,7 @@ fun NavGraphBuilder.repositoriesScreen(
 
         RepositoriesScreen(
             uiState = uiState,
-            navigateToPullRequest = {
-                navHostController.navigateToPullRequestsScreen()
-            }
+            navHostController = navHostController
         )
 
     }

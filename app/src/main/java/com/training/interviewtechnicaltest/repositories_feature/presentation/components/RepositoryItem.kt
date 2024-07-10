@@ -38,10 +38,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.training.interviewtechnicaltest.R
 import com.training.interviewtechnicaltest.core.domain.model.Repository
+import com.training.interviewtechnicaltest.core.navigation.navigateToPullRequestsScreen
+import com.training.interviewtechnicaltest.repositories_feature.presentation.RepositoriesViewModel
 import com.training.interviewtechnicaltest.ui.theme.black
 import com.training.interviewtechnicaltest.ui.theme.white
 import com.training.interviewtechnicaltest.ui.theme.yellow
@@ -49,7 +52,7 @@ import com.training.interviewtechnicaltest.ui.theme.yellow
 @Composable
 fun RepositoryItem(
     repository: Repository,
-    onItemClick: () -> Unit = {}
+    navHostController: NavController,
 ) {
     var expanded by remember {
         mutableStateOf(false)
@@ -59,7 +62,10 @@ fun RepositoryItem(
             .padding(4.dp)
             .fillMaxWidth()
             .clickable {
-                onItemClick()
+                navHostController.navigateToPullRequestsScreen(
+                    author = repository.owner?.login ?: "",
+                    repo = repository.name ?: ""
+                )
             },
         colors = CardDefaults.cardColors(
             containerColor = black,
