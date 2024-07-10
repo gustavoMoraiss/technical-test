@@ -59,7 +59,7 @@ private fun NavigationGraph(navController: NavHostController) {
 
             PullRequestsScreen(
                 uiState = uiState,
-                navigateToRepositories = {},
+                navigateToRepositories = {navController.navigateUp()},
                 retryRequest = { viewModel.getPullRequests() })
         }
     }
