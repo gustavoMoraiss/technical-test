@@ -11,6 +11,7 @@ import com.training.interviewtechnicaltest.repositories_feature.presentation.sta
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
 @HiltViewModel
@@ -36,10 +37,14 @@ class RepositoriesViewModel @Inject constructor(
         getRepositories()
     }
 
-    private fun getRepositories() {
-        val repositories = repositoriesUseCase.invoke()
-            .cachedIn(viewModelScope)
-        uiState = uiState.copy(repositories = repositories)
+     private fun getRepositories() {
+         try {
+             val repositories = repositoriesUseCase.invoke()
+                 .cachedIn(viewModelScope)
+             uiState = uiState.copy(repositories = repositories)
+         } catch (e: Exception){
+             uiState = uiState.copy(repositories = flowOf())
+         }
     }
 
     fun setOnClickRepositoryItem(author: String, repo: String) {

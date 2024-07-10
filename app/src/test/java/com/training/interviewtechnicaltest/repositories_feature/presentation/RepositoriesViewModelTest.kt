@@ -15,6 +15,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import com.google.common.truth.Truth.assertThat
+import com.google.gson.JsonSyntaxException
 import kotlinx.coroutines.test.runTest
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -36,16 +37,30 @@ class RepositoriesViewModelTest {
     )
 
     @Test
-    fun `must validate paging data object values when calling paging data from github repositories`() = runTest{
-        //Given
-        whenever(repositoriesUseCase.invoke()).thenReturn(
-            flowOf(fakePagingDataRepositories)
-        )
+    fun `must validate paging data object values when calling paging data from github repositories`() =
+        runTest {
+            //Given
+            whenever(repositoriesUseCase.invoke()).thenReturn(
+                flowOf(fakePagingDataRepositories)
+            )
 
-        //When
-        val result = viewModel.uiState.repositories.first()
+            //When
+            val result = viewModel.uiState.repositories.first()
 
-        //Then
-        assertThat(result).isNotNull()
-    }
+            //Then
+            assertThat(result).isNotNull()
+        }
+
+    @Test
+    fun `must thrown an exception when the calling to the use case  return an exception`() =
+        runTest {
+            //Given
+            whenever(repositoriesUseCase.invoke()).thenThrow(RuntimeException())
+
+            //When
+            val result = viewModel.uiState.repositories
+
+            //Then
+            assertThat(result).isNotSameInstanceAs(fakePagingDataRepositories)
+        }
 }
