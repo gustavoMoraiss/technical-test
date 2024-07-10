@@ -1,9 +1,9 @@
-package com.training.interviewtechnicaltest.repositories_feature.presentation
+package com.training.interviewtechnicaltest.repositories_feature
 
 import androidx.paging.PagingData
 import com.nhaarman.mockitokotlin2.whenever
 import com.training.interviewtechnicaltest.TestDispatcherRule
-import com.training.interviewtechnicaltest.repositories_feature.core.domain.model.RepositoriesFactory
+import com.training.interviewtechnicaltest.core.domain.model.RepositoriesFactory
 import com.training.interviewtechnicaltest.repositories_feature.data.mapper.toRepository
 import com.training.interviewtechnicaltest.repositories_feature.domain.usecase.RepositoriesUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -16,6 +16,7 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import com.google.common.truth.Truth.assertThat
 import com.google.gson.JsonSyntaxException
+import com.training.interviewtechnicaltest.repositories_feature.presentation.RepositoriesViewModel
 import kotlinx.coroutines.test.runTest
 
 @OptIn(ExperimentalCoroutinesApi::class)

@@ -9,7 +9,7 @@ import com.training.interviewtechnicaltest.core.data.remote.service.util.SafeApi
 import com.training.interviewtechnicaltest.core.data.remote.service.util.onEmpty
 import com.training.interviewtechnicaltest.core.data.remote.service.util.onError
 import com.training.interviewtechnicaltest.core.data.remote.service.util.onSuccess
-import com.training.interviewtechnicaltest.core.paging.RepositoriesPageSource
+import com.training.interviewtechnicaltest.core.data.remote.paging.RepositoriesPageSource
 import com.training.interviewtechnicaltest.repositories_feature.domain.source.RepositoriesRemoteDataSource
 import javax.inject.Inject
 import javax.xml.transform.Result

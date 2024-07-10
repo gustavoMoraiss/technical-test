@@ -12,7 +12,7 @@ import com.training.interviewtechnicaltest.core.data.remote.service.util.onEmpty
 import com.training.interviewtechnicaltest.core.data.remote.service.util.onError
 import com.training.interviewtechnicaltest.core.data.remote.service.util.onSuccess
 import com.training.interviewtechnicaltest.core.domain.model.PullRequest
-import com.training.interviewtechnicaltest.core.paging.RepositoriesPageSource
+import com.training.interviewtechnicaltest.core.data.remote.paging.RepositoriesPageSource
 import com.training.interviewtechnicaltest.pullrequests_feature.data.mapper.toPullRequestList
 import com.training.interviewtechnicaltest.pullrequests_feature.domain.source.PullRequestsRemoteDataSource
 import com.training.interviewtechnicaltest.repositories_feature.domain.source.RepositoriesRemoteDataSource

@@ -1,4 +1,4 @@
-package com.training.interviewtechnicaltest.repositories_feature.core.domain.model
+package com.training.interviewtechnicaltest.core.domain.model
 
 import com.nhaarman.mockitokotlin2.description
 import com.training.interviewtechnicaltest.core.data.remote.model.OwnerResult

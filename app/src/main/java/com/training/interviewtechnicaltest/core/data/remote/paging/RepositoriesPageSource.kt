@@ -1,4 +1,4 @@
-package com.training.interviewtechnicaltest.core.paging
+package com.training.interviewtechnicaltest.core.data.remote.paging
 
 import android.os.Build
 import androidx.annotation.RequiresExtension
