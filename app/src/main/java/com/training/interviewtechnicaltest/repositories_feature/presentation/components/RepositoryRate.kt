@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ForkLeft
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -30,10 +31,10 @@ fun RepositoryRate(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
-            imageVector = Icons.Default.Star,
+            imageVector = icon,
             contentDescription = null,
             tint = Color.Yellow,
-            modifier = Modifier.size(12.dp)
+            modifier = Modifier.size(16.dp)
         )
 
         Text(

@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ForkLeft
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.Star
@@ -132,13 +133,14 @@ fun RepositoryItem(
                             color = white
                         )
 
-                        Spacer(modifier = Modifier.size(4.dp))
+                        Spacer(modifier = Modifier.size(8.dp))
 
                         Row {
                             RepositoryRate(
-                                icon = Icons.Default.Star,
+                                icon = Icons.Default.ForkLeft,
                                 value = repository.forksCount ?: 0
                             )
+                            Spacer(modifier = Modifier.size(8.dp))
                             RepositoryRate(
                                 icon = Icons.Default.Star,
                                 value = repository.stargazersCount ?: 0

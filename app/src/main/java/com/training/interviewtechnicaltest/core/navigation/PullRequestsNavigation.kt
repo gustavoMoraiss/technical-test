@@ -17,8 +17,8 @@ import com.training.interviewtechnicaltest.repositories_feature.presentation.Rep
 import com.training.interviewtechnicaltest.repositories_feature.presentation.state.RepositoriesState
 
 const val pullRequestsScreenRoute = "pullRequestsScreenRoute"
-const val authorArgument = "authorArgument"
-const val repoArgument = "repoArgument"
+private const val authorArgument = "authorArgument"
+private const val repoArgument = "repoArgument"
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun NavGraphBuilder.pullRequestsScreen(
@@ -26,12 +26,12 @@ fun NavGraphBuilder.pullRequestsScreen(
 ) {
     composable(route = "${pullRequestsScreenRoute}/{$authorArgument}/{$repoArgument}",
         arguments = listOf(
-            navArgument("authorArgument") { type = NavType.StringType },
-            navArgument("repoArgument") { type = NavType.StringType }
+            navArgument(authorArgument) { type = NavType.StringType },
+            navArgument(repoArgument) { type = NavType.StringType }
         )) { backStackEntry ->
 
-        val authorName = backStackEntry.arguments?.getString("authorArgument")
-        val repoName = backStackEntry.arguments?.getString("repoArgument")
+        val authorName = backStackEntry.arguments?.getString(authorArgument)
+        val repoName = backStackEntry.arguments?.getString(repoArgument)
 
         val viewModel: PullRequestsViewModel = hiltViewModel<PullRequestsViewModel>()
         val uiState by viewModel.uiState.collectAsState()

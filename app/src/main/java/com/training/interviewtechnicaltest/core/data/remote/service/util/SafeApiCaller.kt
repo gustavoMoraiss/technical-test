@@ -27,7 +27,7 @@ open class SafeApiCaller(private val backgroundDispatcher: CoroutineDispatcher =
                 val httpError = getAPIErrorAndCreateAPIException(result)
                 ResultData.APIError(httpError)
             } else {
-                if (result is Response<*> && result.body().toString().isNullOrEmpty()) {
+                if (result is Response<*> && result.body().toString().isEmpty()) {
                     ResultData.Empty(result.code())
                 } else {
                     ResultData.Success(result)
