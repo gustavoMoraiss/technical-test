@@ -1,5 +1,7 @@
 package com.training.interviewtechnicaltest.pullrequests_feature.presentation.components
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -39,10 +41,12 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.training.interviewtechnicaltest.R
 import com.training.interviewtechnicaltest.core.data.remote.response.pullrequests.PullRequestResponse
+import com.training.interviewtechnicaltest.core.util.UtilFunctions.formatDateAPI
 import com.training.interviewtechnicaltest.ui.theme.black
 import com.training.interviewtechnicaltest.ui.theme.white
 import com.training.interviewtechnicaltest.ui.theme.yellow
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun PullRequestItem(
     pullRequest: PullRequestResponse?,
@@ -119,6 +123,12 @@ fun PullRequestItem(
                         HorizontalDivider(modifier = Modifier.padding(4.dp))
                         Text(
                             text = "Authored by: ${pullRequest?.head?.user?.login ?: ""}",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = white
+                        )
+
+                        Text(
+                            text = "Created at: ${pullRequest?.createdAt?.formatDateAPI() ?: ""}",
                             style = MaterialTheme.typography.bodyMedium,
                             color = white
                         )

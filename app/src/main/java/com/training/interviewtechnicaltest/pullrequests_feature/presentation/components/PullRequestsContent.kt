@@ -1,5 +1,7 @@
 package com.training.interviewtechnicaltest.pullrequests_feature.presentation.components
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,6 +23,7 @@ import com.training.interviewtechnicaltest.core.components.LoadingView
 import com.training.interviewtechnicaltest.core.data.remote.response.pullrequests.PullRequestResponse
 import com.training.interviewtechnicaltest.core.domain.model.Repository
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun PullRequestsContent(
     modifier: Modifier = Modifier,

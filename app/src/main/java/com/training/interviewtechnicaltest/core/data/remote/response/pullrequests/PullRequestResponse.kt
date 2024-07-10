@@ -10,5 +10,7 @@ data class PullRequestResponse(
     val body: String,
     @SerializedName("head")
     val head: HeadResult,
+    @SerializedName("created_at")
+    val createdAt: String
 )
 
