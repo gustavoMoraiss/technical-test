@@ -36,6 +36,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -53,6 +55,9 @@ fun PullRequestItem(
     pullRequest: PullRequest?,
     onItemClick: () -> Unit = {}
 ) {
+
+    val context = LocalContext.current
+
     var expanded by remember {
         mutableStateOf(false)
     }
@@ -62,6 +67,9 @@ fun PullRequestItem(
             .fillMaxWidth()
             .clickable {
                 onItemClick()
+            } .clearAndSetSemantics {
+                contentDescription =
+                    context.getString(R.string.pull_requests_item_description_outlined_card)
             },
         colors = CardDefaults.cardColors(
             containerColor = black,
@@ -93,14 +101,22 @@ fun PullRequestItem(
                         .fillMaxWidth()
                         .align(Alignment.CenterVertically)
                         .background(Color.Black)
-                        .clip(RoundedCornerShape(corner = CornerSize(16.dp))),
+                        .clip(RoundedCornerShape(corner = CornerSize(16.dp)))
+                        .clearAndSetSemantics {
+                            contentDescription =
+                                context.getString(R.string.pull_requests_item_description_avatar_image)
+                        },
                 )
             }
             Column(modifier = Modifier.padding(12.dp)) {
                 Text(
                     text = pullRequest?.title ?: "",
                     style = MaterialTheme.typography.titleLarge,
-                    color = white
+                    color = white,
+                    modifier = Modifier.clearAndSetSemantics {
+                        contentDescription =
+                            context.getString(R.string.pull_requests_item_description_pull_request_title)
+                    }
                 )
 
                 Spacer(modifier = Modifier.size(8.dp))
@@ -108,7 +124,11 @@ fun PullRequestItem(
                 Text(
                     text = String.format("Description: %s", pullRequest?.body ?: ""),
                     style = MaterialTheme.typography.labelSmall,
-                    color = white
+                    color = white,
+                    modifier = Modifier.clearAndSetSemantics {
+                        contentDescription =
+                            context.getString(R.string.pull_requests_item_description_pull_request_body)
+                    }
                 )
 
                 Spacer(modifier = Modifier.size(4.dp))
@@ -116,7 +136,11 @@ fun PullRequestItem(
                 Text(
                     text = pullRequest?.head?.user?.login ?: "",
                     style = MaterialTheme.typography.bodyLarge,
-                    color = white
+                    color = white,
+                    modifier = Modifier.clearAndSetSemantics {
+                        contentDescription =
+                            context.getString(R.string.pull_requests_item_description_pull_request_login)
+                    }
 
                 )
                 AnimatedVisibility(visible = expanded) {
@@ -125,13 +149,21 @@ fun PullRequestItem(
                         Text(
                             text = "Authored by: ${pullRequest?.head?.user?.login ?: ""}",
                             style = MaterialTheme.typography.bodyMedium,
-                            color = white
+                            color = white,
+                            modifier = Modifier.clearAndSetSemantics {
+                                contentDescription =
+                                    context.getString(R.string.pull_requests_item_description_pull_request_author)
+                            }
                         )
 
                         Text(
                             text = "Created at: ${pullRequest?.createdAt?.formatDateAPI() ?: ""}",
                             style = MaterialTheme.typography.bodyMedium,
-                            color = white
+                            color = white,
+                            modifier = Modifier.clearAndSetSemantics {
+                                contentDescription =
+                                    context.getString(R.string.pull_requests_item_description_pull_request_created_at)
+                            }
                         )
                     }
                 }
@@ -145,6 +177,9 @@ fun PullRequestItem(
                         .size(24.dp)
                         .clickable {
                             expanded = !expanded
+                        }.clearAndSetSemantics {
+                            contentDescription =
+                                context.getString(R.string.repository_item_description_repository_icon_button)
                         },
                     tint = Color.DarkGray
                 )

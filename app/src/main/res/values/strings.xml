@@ -6,7 +6,7 @@
     <string name="repository_content_error_message">"Verifique sua conexão com a internet"</string>
 
     //RepositoryItem
-    <string name="repository_item_description_outlined_card">Responsável por representar a junção do Card de cada Repository.</string>
+    <string name="repository_item_description_outlined_card">Responsável por representar a junção do Card de cada Repository e também a navegação até a tela de pull requests.</string>
     <string name="repository_item_description_avatar_image">Foto de perfil do repositório.</string>
     <string name="repository_item_description_repository_name">Nome do repositório.</string>
     <string name="repository_item_description_repository_description">Descrição do repositório.</string>
@@ -14,5 +14,18 @@
     <string name="repository_item_description_repository_forks_count">Número de Forks do repositório.</string>
     <string name="repository_item_description_repository_stars_count">Números de Stars do repositório.</string>
     <string name="repository_item_description_repository_icon_button">Ícone responsável por mostrar os detalhes do repositório</string>
+
+    //PullRequestsContent
+    <string name="pull_requests_content_description_lazy_vertical_grid">Responsável por listar todos os PullRequests</string>
+
+    //PullRequestItem
+    <string name="pull_requests_item_description_outlined_card">Responsável por representar a junção do Card de cada PullRequest.</string>
+    <string name="pull_requests_item_description_avatar_image">Foto de perfil do dono do pull request.</string>
+    <string name="pull_requests_item_description_pull_request_title">Titulo do pull request.</string>
+    <string name="pull_requests_item_description_pull_request_body">Descricao do pull request.</string>
+    <string name="pull_requests_item_description_pull_request_login">Login do Author do pull request.</string>
+    <string name="pull_requests_item_description_pull_request_created_at">Data de criacao do pull request.</string>
+    <string name="pull_requests_item_description_pull_request_author">Author do pull request.</string>
+    <string name="pull_requests_item_description_repository_icon_button">Ícone responsável por mostrar os detalhes do pull request</string>
 
 </resources>

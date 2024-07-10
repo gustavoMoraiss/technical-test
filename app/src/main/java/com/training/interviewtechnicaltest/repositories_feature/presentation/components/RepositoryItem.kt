@@ -58,7 +58,6 @@ fun RepositoryItem(
     repository: Repository,
     navHostController: NavController,
 ) {
-
     val context = LocalContext.current
 
     var expanded by remember {
