@@ -121,6 +121,32 @@ dependencies {
     implementation("androidx.room:room-ktx:2.4.2")
     implementation("androidx.room:room-runtime:2.4.2")
     kapt ("androidx.room:room-compiler:2.4.2")
+
+    //Testes
+    //Hilt
+    kaptAndroidTest ("com.google.dagger:hilt-android-compiler:2.45")
+    androidTestImplementation ("com.google.dagger:hilt-android-testing:2.45")
+
+// Unit tests
+    testImplementation ("junit:junit:4.13.2")
+    testImplementation ("androidx.arch.core:core-testing:2.2.0")
+    /**/testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    /**/testImplementation ("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    testImplementation ("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+    testImplementation ("org.mockito:mockito-inline:2.28.2")
+    testImplementation ("androidx.room:room-testing:2.5.2")
+
+// Instrumentation tests
+    androidTestImplementation ("androidx.arch.core:core-testing:2.2.0")
+    androidTestImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    androidTestImplementation ("com.google.truth:truth:1.1.3")
+    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+
+    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:1.6.8")
+    debugImplementation ("androidx.compose.ui:ui-tooling:1.6.8")
+    debugImplementation ("androidx.compose.ui:ui-test-manifest:1.6.8")
 }
 
 kapt {

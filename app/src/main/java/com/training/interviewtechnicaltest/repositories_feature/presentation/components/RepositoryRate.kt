@@ -43,7 +43,6 @@ fun RepositoryRate(
             color = Color.White,
             fontSize = 10.sp
         )
-
     }
 }
 
