@@ -2,7 +2,7 @@ package com.training.interviewtechnicaltest.core.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 
-data class RepositorieResult(
+data class RepositoryResult(
     @SerializedName("forks_count")
     val forksCount: Int,
     @SerializedName("name")

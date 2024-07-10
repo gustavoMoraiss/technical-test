@@ -141,6 +141,7 @@ dependencies {
     androidTestImplementation ("androidx.arch.core:core-testing:2.2.0")
     androidTestImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
     androidTestImplementation ("com.google.truth:truth:1.1.3")
+    testImplementation ("com.google.truth.extensions:truth-java8-extension:1.0.1")
     androidTestImplementation ("androidx.test.ext:junit:1.1.5")
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
 

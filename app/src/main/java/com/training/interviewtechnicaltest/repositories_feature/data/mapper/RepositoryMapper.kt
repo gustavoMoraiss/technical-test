@@ -1,10 +1,9 @@
 package com.training.interviewtechnicaltest.repositories_feature.data.mapper
 
-import com.training.interviewtechnicaltest.core.data.remote.model.RepositorieResult
-import com.training.interviewtechnicaltest.core.data.remote.response.repositories.RepositoriesResponse
+import com.training.interviewtechnicaltest.core.data.remote.model.RepositoryResult
 import com.training.interviewtechnicaltest.core.domain.model.Repository
 
-fun List<RepositorieResult>.toRepository() = map { repositoryResult ->
+fun List<RepositoryResult>.toRepository() = map { repositoryResult ->
     Repository(
         forksUrl = repositoryResult.forksUrl,
         stargazersUrl = repositoryResult.stargazersUrl,
