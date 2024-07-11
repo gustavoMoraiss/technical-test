@@ -78,9 +78,9 @@ fun RepositoryItem(
                     context.getString(R.string.repository_item_description_outlined_card)
             },
         colors = CardDefaults.cardColors(
-            containerColor = black,
+            containerColor = MaterialTheme.colorScheme.background,
         ),
-        border = BorderStroke(1.dp, yellow),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),
         elevation = CardDefaults.cardElevation(8.dp),
     ) {
@@ -118,7 +118,7 @@ fun RepositoryItem(
                 Text(
                     text = repository.name ?: "",
                     style = MaterialTheme.typography.titleLarge,
-                    color = white,
+                    color = MaterialTheme.colorScheme.secondary,
                     modifier = Modifier.clearAndSetSemantics {
                         contentDescription =
                             context.getString(R.string.repository_item_description_repository_name)
@@ -130,7 +130,7 @@ fun RepositoryItem(
                 Text(
                     text = String.format("Description: %s", repository.description ?: ""),
                     style = MaterialTheme.typography.labelSmall,
-                    color = white,
+                    color = MaterialTheme.colorScheme.secondary,
                     modifier = Modifier.clearAndSetSemantics {
                         contentDescription =
                             context.getString(R.string.repository_item_description_repository_description)
@@ -142,7 +142,7 @@ fun RepositoryItem(
                 Text(
                     text = repository.fullName ?: "",
                     style = MaterialTheme.typography.bodyLarge,
-                    color = white,
+                    color = MaterialTheme.colorScheme.secondary,
                     modifier = Modifier.clearAndSetSemantics {
                         contentDescription =
                             context.getString(R.string.repository_item_description_repository_full_name)
@@ -155,7 +155,7 @@ fun RepositoryItem(
                         Text(
                             text = "Authored by: ${repository.owner?.login ?: ""}",
                             style = MaterialTheme.typography.bodyMedium,
-                            color = white
+                            color = MaterialTheme.colorScheme.secondary,
                         )
 
                         Spacer(modifier = Modifier.size(8.dp))

@@ -40,7 +40,7 @@ fun RepositoryRate(
         Text(
             text = value.toString(),
             style = MaterialTheme.typography.bodySmall,
-            color = Color.White,
+            color = MaterialTheme.colorScheme.secondary,
             fontSize = 10.sp
         )
     }

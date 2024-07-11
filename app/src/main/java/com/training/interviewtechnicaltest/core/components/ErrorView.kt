@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,7 +33,7 @@ fun ErrorView(
             overflow = TextOverflow.Ellipsis,
             fontStyle = FontStyle.Italic,
             fontSize = 16.sp,
-            color = white
+            color = MaterialTheme.colorScheme.primary
         )
 
         Button(onClick = retry, colors = ButtonDefaults.buttonColors(yellow)) {
