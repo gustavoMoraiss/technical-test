@@ -18,6 +18,10 @@
     <string name="repository_item_description_repository_stars_count">Números de Stars do repositório.</string>
     <string name="repository_item_description_repository_icon_button">Ícone responsável por mostrar os detalhes do repositório</string>
 
+    //PullRequestScreen
+    <string name="pull_requests_screen_title_app_bar">Pull Requests</string>
+    <string name="pull_requests_screen_error_message">Verifique sua conexão com a internet</string>
+
     //PullRequestsContent
     <string name="pull_requests_content_description_lazy_vertical_grid">Responsável por listar todos os PullRequests</string>
 
@@ -31,9 +35,8 @@
     <string name="pull_requests_item_description_pull_request_author">Author do pull request.</string>
     <string name="pull_requests_item_description_repository_icon_button">Ícone responsável por mostrar os detalhes do pull request</string>
 
-    //PullRequestScreen
-    <string name="pull_requests_screen_title_app_bar">Pull Requests</string>
-    <string name="pull_requests_screen_error_message">Verifique sua conexão com a internet</string>
+    //Components
     <string name="error_view_button_text">Recarregar</string>
+    <string name="empty_data_screen_description">there is no pull requests for this repository.</string>
 
 </resources>

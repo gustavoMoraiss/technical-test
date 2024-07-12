@@ -39,16 +39,16 @@ fun PullRequestsContent(
             contentPadding = paddingValues,
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             verticalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxSize().clearAndSetSemantics {
-                contentDescription =
-                    context.getString(R.string.pull_requests_content_description_lazy_vertical_grid)
-            }
-        ) {
-            pullRequests.isNotEmpty().let {
-                items(pullRequests.size) { index ->
-                    val pullRequest = pullRequests[index]
-                    PullRequestItem(pullRequest = pullRequest)
+            modifier = Modifier
+                .fillMaxSize()
+                .clearAndSetSemantics {
+                    contentDescription =
+                        context.getString(R.string.pull_requests_content_description_lazy_vertical_grid)
                 }
+        ) {
+            items(pullRequests.size) { index ->
+                val pullRequest = pullRequests[index]
+                PullRequestItem(pullRequest = pullRequest)
             }
         }
     }

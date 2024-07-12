@@ -3,12 +3,12 @@ package com.training.interviewtechnicaltest.pullrequests_feature.presentation
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.training.interviewtechnicaltest.R
 import com.training.interviewtechnicaltest.core.components.CustomAppBar
+import com.training.interviewtechnicaltest.core.components.EmptyDataScreen
 import com.training.interviewtechnicaltest.core.components.ErrorScreen
 import com.training.interviewtechnicaltest.core.components.LoadingScreen
 import com.training.interviewtechnicaltest.pullrequests_feature.presentation.components.PullRequestsContent
@@ -22,7 +22,6 @@ fun PullRequestsScreen(
     navigateToRepositories: () -> Unit,
     retryRequest: () -> Unit
 ) {
-
     Scaffold(topBar = {
         CustomAppBar(
             title = stringResource(id = R.string.pull_requests_screen_title_app_bar),
@@ -41,8 +40,13 @@ fun PullRequestsScreen(
                     retry = { retryRequest() })
             }
 
+            is PullRequestsUiState.EmptyData -> {
+                EmptyDataScreen()
+            }
+
             is PullRequestsUiState.SuccessPullRequestsUiState -> {
-                PullRequestsContent(pullRequests = uiState.pullRequests,
+                PullRequestsContent(
+                    pullRequests = uiState.pullRequests,
                     paddingValues = paddingValues,
                 )
             }

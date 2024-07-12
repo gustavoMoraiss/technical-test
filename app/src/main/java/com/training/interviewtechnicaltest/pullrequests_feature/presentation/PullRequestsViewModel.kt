@@ -2,6 +2,7 @@ package com.training.interviewtechnicaltest.pullrequests_feature.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.training.interviewtechnicaltest.core.data.remote.service.util.onEmpty
 import com.training.interviewtechnicaltest.core.data.remote.service.util.onError
 import com.training.interviewtechnicaltest.core.data.remote.service.util.onSuccess
 import com.training.interviewtechnicaltest.pullrequests_feature.domain.usecase.PullRequestsUseCase
@@ -55,6 +56,10 @@ class PullRequestsViewModel @Inject constructor(
             }.onError {
                 _uiState.update {
                     PullRequestsUiState.Error
+                }
+            }.onEmpty {
+                _uiState.update {
+                    PullRequestsUiState.EmptyData
                 }
             }
         }
