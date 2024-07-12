@@ -31,5 +31,6 @@ The requirements:
 #### Jetpack Compose: For building UI screens declaratively.
 #### JUnit, Mockito: For unit testing.
 #### All Screens contains accessibility.
+### Supports Dark and Light theme
 
 
