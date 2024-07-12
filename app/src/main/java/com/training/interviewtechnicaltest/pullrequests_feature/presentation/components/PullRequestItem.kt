@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.training.interviewtechnicaltest.R
+import com.training.interviewtechnicaltest.core.components.AsyncAvatarImage
 import com.training.interviewtechnicaltest.core.data.remote.response.pullrequests.PullRequestResponse
 import com.training.interviewtechnicaltest.core.domain.model.PullRequest
 import com.training.interviewtechnicaltest.core.util.UtilFunctions.formatDateAPI
@@ -67,14 +68,15 @@ fun PullRequestItem(
             .fillMaxWidth()
             .clickable {
                 onItemClick()
-            } .clearAndSetSemantics {
+            }
+            .clearAndSetSemantics {
                 contentDescription =
                     context.getString(R.string.pull_requests_item_description_outlined_card)
             },
         colors = CardDefaults.cardColors(
-            containerColor = black,
+            containerColor = MaterialTheme.colorScheme.background,
         ),
-        border = BorderStroke(1.dp, yellow),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),
         elevation = CardDefaults.cardElevation(8.dp)
     ) {
@@ -82,37 +84,19 @@ fun PullRequestItem(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
-            Surface(
+            AsyncAvatarImage(
+                dataUrl = pullRequest?.head?.user?.avatarUrl ?: "",
                 modifier = Modifier
-                    .padding(12.dp)
-                    .size(100.dp),
-                shape = RoundedCornerShape(20.dp),
-            )
-            {
-                AsyncImage(
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data(pullRequest?.head?.user?.avatarUrl ?: "")
-                        .crossfade(true)
-                        .error(R.drawable.ic_launcher_background)
-                        .placeholder(R.drawable.ic_launcher_foreground).build(),
-                    contentDescription = "image icon",
-                    contentScale = ContentScale.FillHeight,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.CenterVertically)
-                        .background(Color.Black)
-                        .clip(RoundedCornerShape(corner = CornerSize(16.dp)))
-                        .clearAndSetSemantics {
-                            contentDescription =
-                                context.getString(R.string.pull_requests_item_description_avatar_image)
-                        },
-                )
-            }
+                    .align(Alignment.CenterVertically)
+                    .clearAndSetSemantics {
+                        contentDescription =
+                            context.getString(R.string.pull_requests_item_description_avatar_image)
+                    })
             Column(modifier = Modifier.padding(12.dp)) {
                 Text(
                     text = pullRequest?.title ?: "",
                     style = MaterialTheme.typography.titleLarge,
-                    color = white,
+                    color = MaterialTheme.colorScheme.secondary,
                     modifier = Modifier.clearAndSetSemantics {
                         contentDescription =
                             context.getString(R.string.pull_requests_item_description_pull_request_title)
@@ -124,11 +108,12 @@ fun PullRequestItem(
                 Text(
                     text = String.format("Description: %s", pullRequest?.body ?: ""),
                     style = MaterialTheme.typography.labelSmall,
-                    color = white,
+                    color = MaterialTheme.colorScheme.secondary,
                     modifier = Modifier.clearAndSetSemantics {
                         contentDescription =
                             context.getString(R.string.pull_requests_item_description_pull_request_body)
-                    }
+                    },
+                    maxLines = if (!expanded) 4 else Int.MAX_VALUE
                 )
 
                 Spacer(modifier = Modifier.size(4.dp))
@@ -136,7 +121,7 @@ fun PullRequestItem(
                 Text(
                     text = pullRequest?.head?.user?.login ?: "",
                     style = MaterialTheme.typography.bodyLarge,
-                    color = white,
+                    color = MaterialTheme.colorScheme.secondary,
                     modifier = Modifier.clearAndSetSemantics {
                         contentDescription =
                             context.getString(R.string.pull_requests_item_description_pull_request_login)
@@ -149,7 +134,7 @@ fun PullRequestItem(
                         Text(
                             text = "Authored by: ${pullRequest?.head?.user?.login ?: ""}",
                             style = MaterialTheme.typography.bodyMedium,
-                            color = white,
+                            color = MaterialTheme.colorScheme.secondary,
                             modifier = Modifier.clearAndSetSemantics {
                                 contentDescription =
                                     context.getString(R.string.pull_requests_item_description_pull_request_author)
@@ -159,7 +144,7 @@ fun PullRequestItem(
                         Text(
                             text = "Created at: ${pullRequest?.createdAt?.formatDateAPI() ?: ""}",
                             style = MaterialTheme.typography.bodyMedium,
-                            color = white,
+                            color = MaterialTheme.colorScheme.secondary,
                             modifier = Modifier.clearAndSetSemantics {
                                 contentDescription =
                                     context.getString(R.string.pull_requests_item_description_pull_request_created_at)
@@ -177,7 +162,8 @@ fun PullRequestItem(
                         .size(24.dp)
                         .clickable {
                             expanded = !expanded
-                        }.clearAndSetSemantics {
+                        }
+                        .clearAndSetSemantics {
                             contentDescription =
                                 context.getString(R.string.repository_item_description_repository_icon_button)
                         },

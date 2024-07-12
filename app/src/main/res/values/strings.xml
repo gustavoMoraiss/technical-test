@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Interview Technical Test</string>
 
-    //Repositories Screen
+    //RepositoriesScreen
     <string name="repositories_screen_title_app_bar">Github Java Popular Repositories</string>
 
     //RepositoryContent
@@ -30,5 +30,10 @@
     <string name="pull_requests_item_description_pull_request_created_at">Data de criacao do pull request.</string>
     <string name="pull_requests_item_description_pull_request_author">Author do pull request.</string>
     <string name="pull_requests_item_description_repository_icon_button">Ícone responsável por mostrar os detalhes do pull request</string>
+
+    //PullRequestScreen
+    <string name="pull_requests_screen_title_app_bar">Pull Requests</string>
+    <string name="pull_requests_screen_error_message">Verifique sua conexão com a internet</string>
+    <string name="error_view_button_text">Recarregar</string>
 
 </resources>

@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,12 +28,12 @@ fun PullRequestsContent(
     modifier: Modifier = Modifier,
     pullRequests: List<PullRequest?>,
     paddingValues: PaddingValues,
-    onClick: () -> Unit
+    onClick: () -> Unit = {}
 ) {
 
     val context = LocalContext.current
 
-    Box(modifier = modifier.background(Color.Black)) {
+    Surface(modifier = modifier.background(MaterialTheme.colorScheme.background)) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(1),
             contentPadding = paddingValues,

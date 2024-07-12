@@ -1,11 +1,7 @@
 package com.training.interviewtechnicaltest.repositories_feature.presentation
 
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
@@ -14,8 +10,6 @@ import com.training.interviewtechnicaltest.R
 import com.training.interviewtechnicaltest.core.components.CustomAppBar
 import com.training.interviewtechnicaltest.repositories_feature.presentation.components.RepositoryContent
 import com.training.interviewtechnicaltest.repositories_feature.presentation.state.RepositoriesState
-import com.training.interviewtechnicaltest.ui.theme.black
-import com.training.interviewtechnicaltest.ui.theme.yellow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -3,28 +3,19 @@ package com.training.interviewtechnicaltest.pullrequests_feature.presentation
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.training.interviewtechnicaltest.R
+import com.training.interviewtechnicaltest.core.components.CustomAppBar
 import com.training.interviewtechnicaltest.core.components.ErrorScreen
 import com.training.interviewtechnicaltest.core.components.LoadingScreen
 import com.training.interviewtechnicaltest.pullrequests_feature.presentation.components.PullRequestsContent
 import com.training.interviewtechnicaltest.pullrequests_feature.presentation.state.PullRequestsUiState
-import com.training.interviewtechnicaltest.ui.theme.black
-import com.training.interviewtechnicaltest.ui.theme.yellow
 
 @RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PullRequestsScreen(
     uiState: PullRequestsUiState,
@@ -33,24 +24,12 @@ fun PullRequestsScreen(
 ) {
 
     Scaffold(topBar = {
-        TopAppBar(
-            title = {
-                Text(
-                    text = stringResource(R.string.app_name), color = yellow
-                )
-            },
-            colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = black),
-            navigationIcon = {
-                IconButton(onClick = { navigateToRepositories() }) {
-                    Icon(
-                        Icons.Default.ArrowBack,
-                        contentDescription = "Back",
-                        tint = yellow
-                    )
-                }
-            },
+        CustomAppBar(
+            title = stringResource(id = R.string.pull_requests_screen_title_app_bar),
+            showAppBarButton = true,
+            onBackButtonClick = { navigateToRepositories() }
         )
-    }, content = {
+    }, content = { paddingValues ->
         when (uiState) {
             is PullRequestsUiState.Loading -> {
                 LoadingScreen()
@@ -58,14 +37,13 @@ fun PullRequestsScreen(
 
             is PullRequestsUiState.Error -> {
                 ErrorScreen(
-                    message = "Verifique sua conexão com a internet",
+                    message = stringResource(R.string.pull_requests_screen_error_message),
                     retry = { retryRequest() })
             }
 
             is PullRequestsUiState.SuccessPullRequestsUiState -> {
                 PullRequestsContent(pullRequests = uiState.pullRequests,
-                    paddingValues = it,
-                    onClick = { navigateToRepositories() }
+                    paddingValues = paddingValues,
                 )
             }
         }
