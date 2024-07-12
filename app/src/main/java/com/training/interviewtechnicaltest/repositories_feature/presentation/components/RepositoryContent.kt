@@ -9,10 +9,10 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -25,7 +25,6 @@ import com.training.interviewtechnicaltest.R
 import com.training.interviewtechnicaltest.core.components.ErrorView
 import com.training.interviewtechnicaltest.core.components.LoadingView
 import com.training.interviewtechnicaltest.core.domain.model.Repository
-import com.training.interviewtechnicaltest.repositories_feature.presentation.RepositoriesViewModel
 
 @Composable
 fun RepositoryContent(
@@ -37,7 +36,7 @@ fun RepositoryContent(
 
     val context = LocalContext.current
 
-    Box(modifier = modifier.background(MaterialTheme.colorScheme.background)) {
+    Surface(modifier = modifier.background(MaterialTheme.colorScheme.background)) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(1),
             contentPadding = paddingValues,

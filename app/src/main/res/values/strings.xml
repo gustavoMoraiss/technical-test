@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Interview Technical Test</string>
 
+    //Repositories Screen
+    <string name="repositories_screen_title_app_bar">Github Java Popular Repositories</string>
+
     //RepositoryContent
     <string name="repository_content_description_lazy_vertical_grid">Responsável por listar todos os repositórios</string>
     <string name="repository_content_error_message">"Verifique sua conexão com a internet"</string>

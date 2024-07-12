@@ -18,8 +18,6 @@ import androidx.compose.material.icons.filled.ForkLeft
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -38,7 +36,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.dp
@@ -46,12 +43,9 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.training.interviewtechnicaltest.R
+import com.training.interviewtechnicaltest.core.components.AsyncAvatarImage
 import com.training.interviewtechnicaltest.core.domain.model.Repository
 import com.training.interviewtechnicaltest.core.navigation.navigateToPullRequestsScreen
-import com.training.interviewtechnicaltest.repositories_feature.presentation.RepositoriesViewModel
-import com.training.interviewtechnicaltest.ui.theme.black
-import com.training.interviewtechnicaltest.ui.theme.white
-import com.training.interviewtechnicaltest.ui.theme.yellow
 
 @Composable
 fun RepositoryItem(
@@ -69,8 +63,7 @@ fun RepositoryItem(
             .fillMaxWidth()
             .clickable {
                 navHostController.navigateToPullRequestsScreen(
-                    author = repository.owner?.login ?: "",
-                    repo = repository.name ?: ""
+                    author = repository.owner?.login ?: "", repo = repository.name ?: ""
                 )
             }
             .clearAndSetSemantics {
@@ -88,59 +81,37 @@ fun RepositoryItem(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
-            Surface(
+            AsyncAvatarImage(
+                dataUrl = repository.owner?.avatarUrl ?: "",
                 modifier = Modifier
-                    .padding(12.dp)
-                    .size(100.dp),
-                shape = RoundedCornerShape(20.dp),
+                    .align(Alignment.CenterVertically)
+                    .clearAndSetSemantics {
+                        contentDescription =
+                            context.getString(R.string.repository_item_description_avatar_image)
+                    }
             )
-            {
-                AsyncImage(
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data(repository.owner?.avatarUrl ?: "")
-                        .crossfade(true)
-                        .error(R.drawable.ic_launcher_background)
-                        .placeholder(R.drawable.ic_launcher_foreground).build(),
-                    contentDescription = "image icon",
-                    contentScale = ContentScale.FillHeight,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.CenterVertically)
-                        .background(Color.Black)
-                        .clip(RoundedCornerShape(corner = CornerSize(16.dp)))
-                        .clearAndSetSemantics {
-                            contentDescription =
-                                context.getString(R.string.repository_item_description_avatar_image)
-                        },
-                )
-            }
             Column(modifier = Modifier.padding(12.dp)) {
-                Text(
-                    text = repository.name ?: "",
+                Text(text = repository.name ?: "",
                     style = MaterialTheme.typography.titleLarge,
                     color = MaterialTheme.colorScheme.secondary,
                     modifier = Modifier.clearAndSetSemantics {
                         contentDescription =
                             context.getString(R.string.repository_item_description_repository_name)
-                    }
-                )
+                    })
 
                 Spacer(modifier = Modifier.size(8.dp))
 
-                Text(
-                    text = String.format("Description: %s", repository.description ?: ""),
+                Text(text = String.format("Description: %s", repository.description ?: ""),
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.secondary,
                     modifier = Modifier.clearAndSetSemantics {
                         contentDescription =
                             context.getString(R.string.repository_item_description_repository_description)
-                    }
-                )
+                    })
 
                 Spacer(modifier = Modifier.size(4.dp))
 
-                Text(
-                    text = repository.fullName ?: "",
+                Text(text = repository.fullName ?: "",
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.secondary,
                     modifier = Modifier.clearAndSetSemantics {
@@ -161,31 +132,24 @@ fun RepositoryItem(
                         Spacer(modifier = Modifier.size(8.dp))
 
                         Row {
-                            RepositoryRate(
-                                icon = Icons.Default.ForkLeft,
+                            RepositoryRate(icon = Icons.Default.ForkLeft,
                                 value = repository.forksCount ?: 0,
                                 modifier = Modifier.clearAndSetSemantics {
                                     contentDescription =
                                         context.getString(R.string.repository_item_description_repository_forks_count)
-                                }
-                            )
+                                })
                             Spacer(modifier = Modifier.size(8.dp))
-                            RepositoryRate(
-                                icon = Icons.Default.Star,
+                            RepositoryRate(icon = Icons.Default.Star,
                                 value = repository.stargazersCount ?: 0,
                                 modifier = Modifier.clearAndSetSemantics {
                                     contentDescription =
                                         context.getString(R.string.repository_item_description_repository_stars_count)
-                                }
-                            )
+                                })
                         }
                     }
                 }
-                Icon(
-                    imageVector = if (!expanded)
-                        Icons.Filled.KeyboardArrowDown
-                    else
-                        Icons.Filled.KeyboardArrowUp,
+                Icon(imageVector = if (!expanded) Icons.Filled.KeyboardArrowDown
+                else Icons.Filled.KeyboardArrowUp,
                     contentDescription = "keyboard down",
                     modifier = Modifier
                         .size(24.dp)

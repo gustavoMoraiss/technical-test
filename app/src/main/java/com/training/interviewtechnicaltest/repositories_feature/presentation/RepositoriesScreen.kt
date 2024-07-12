@@ -11,6 +11,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.training.interviewtechnicaltest.R
+import com.training.interviewtechnicaltest.core.components.CustomAppBar
 import com.training.interviewtechnicaltest.repositories_feature.presentation.components.RepositoryContent
 import com.training.interviewtechnicaltest.repositories_feature.presentation.state.RepositoriesState
 import com.training.interviewtechnicaltest.ui.theme.black
@@ -26,14 +27,8 @@ fun RepositoriesScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(R.string.app_name),
-                        color = MaterialTheme.colorScheme.primary
-                    )
-                },
-                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = MaterialTheme.colorScheme.background),
+            CustomAppBar(
+                title = stringResource(id = R.string.repositories_screen_title_app_bar),
             )
         },
         content = { paddingValues ->
