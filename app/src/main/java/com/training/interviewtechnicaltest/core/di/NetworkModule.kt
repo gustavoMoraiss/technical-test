@@ -1,9 +1,8 @@
 package com.training.interviewtechnicaltest.core.di
 
-import com.training.interviewtechnicaltest.BuildConfig
-import com.training.interviewtechnicaltest.core.data.remote.service.util.ParamsInterceptor
 import com.training.interviewtechnicaltest.core.data.remote.service.PullRequestsService
 import com.training.interviewtechnicaltest.core.data.remote.service.RepositoriesService
+import com.training.interviewtechnicaltest.core.data.remote.service.util.ParamsInterceptor
 import com.training.interviewtechnicaltest.core.data.remote.service.util.SafeApiCaller
 import dagger.Module
 import dagger.Provides

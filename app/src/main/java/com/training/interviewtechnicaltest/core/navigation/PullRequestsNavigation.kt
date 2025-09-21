@@ -10,11 +10,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.training.interviewtechnicaltest.pullrequests_feature.presentation.PullRequestsScreen
-import com.training.interviewtechnicaltest.pullrequests_feature.presentation.PullRequestsViewModel
-import com.training.interviewtechnicaltest.repositories_feature.presentation.RepositoriesScreen
-import com.training.interviewtechnicaltest.repositories_feature.presentation.RepositoriesViewModel
-import com.training.interviewtechnicaltest.repositories_feature.presentation.state.RepositoriesState
+import com.training.interviewtechnicaltest.features.pullrequest.presentation.PullRequestsScreen
+import com.training.interviewtechnicaltest.features.pullrequest.presentation.PullRequestsViewModel
 
 const val pullRequestsScreenRoute = "pullRequestsScreenRoute"
 private const val authorArgument = "authorArgument"
@@ -30,15 +27,15 @@ fun NavGraphBuilder.pullRequestsScreen(
             navArgument(repoArgument) { type = NavType.StringType }
         )) { backStackEntry ->
 
-        val authorName = backStackEntry.arguments?.getString(authorArgument)
-        val repoName = backStackEntry.arguments?.getString(repoArgument)
+        val authorName = backStackEntry.arguments?.getString(authorArgument).orEmpty()
+        val repoName = backStackEntry.arguments?.getString(repoArgument).orEmpty()
 
         val viewModel: PullRequestsViewModel = hiltViewModel<PullRequestsViewModel>()
         val uiState by viewModel.uiState.collectAsState()
 
         viewModel.saveValues(
-            author = authorName!!,
-            repo = repoName!!
+            author = authorName,
+            repo = repoName
         )
 
         viewModel.getPullRequests()

@@ -1,7 +1,7 @@
 package com.training.interviewtechnicaltest.core.domain.model
 
 import com.training.interviewtechnicaltest.core.data.remote.model.OwnerResult
-import com.training.interviewtechnicaltest.core.data.remote.model.RepositoryResult
+import com.training.interviewtechnicaltest.core.data.remote.model.RepositoryResponse
 import com.training.interviewtechnicaltest.core.data.remote.response.repositories.RepositoriesResponse
 
 class RepositoriesPagingFactory {
@@ -13,7 +13,7 @@ class RepositoriesPagingFactory {
                     totalCount = 200,
                     incompleteResults = false,
                     repositories = listOf(
-                        RepositoryResult(
+                        RepositoryResponse(
                             description = "fake description,",
                             forksCount = 10,
                             stargazersCount = 10,
@@ -26,7 +26,7 @@ class RepositoriesPagingFactory {
                             stargazersUrl = "fake url",
                             name = "fake name"
                         ),
-                        RepositoryResult(
+                        RepositoryResponse(
                             description = "fake description,",
                             forksCount = 10,
                             stargazersCount = 10,
@@ -39,7 +39,7 @@ class RepositoriesPagingFactory {
                             stargazersUrl = "fake url",
                             name = "fake name"
                         ),
-                        RepositoryResult(
+                        RepositoryResponse(
                             description = "fake description,",
                             forksCount = 10,
                             stargazersCount = 10,

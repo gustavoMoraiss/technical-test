@@ -7,7 +7,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.training.interviewtechnicaltest.TestDispatcherRule
 import com.training.interviewtechnicaltest.core.data.remote.service.util.SafeApiCaller
 import com.training.interviewtechnicaltest.core.domain.model.RepositoriesFactory
-import com.training.interviewtechnicaltest.repositories_feature.data.mapper.toRepository
+import com.training.interviewtechnicaltest.repositories_feature.data.mapper.toRepositoryModel
 import com.training.interviewtechnicaltest.repositories_feature.domain.source.RepositoriesRemoteDataSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Rule
@@ -53,7 +53,7 @@ class RepositoriesPagingSourceTest {
         )
 
         val resultExpected = listOf(
-            RepositoriesFactory.create(RepositoriesFactory.RepositoriesType.Default).repositories.toRepository()
+            RepositoriesFactory.create(RepositoriesFactory.RepositoriesType.Default).repositories.toRepositoryModel()
         )
 
         //Then

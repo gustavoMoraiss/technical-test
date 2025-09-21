@@ -1,12 +1,7 @@
 package com.training.interviewtechnicaltest.core.domain.model
 
 import HeadResult
-import com.nhaarman.mockitokotlin2.description
-import com.training.interviewtechnicaltest.core.data.remote.model.OwnerResult
-import com.training.interviewtechnicaltest.core.data.remote.model.RepositoryResult
 import com.training.interviewtechnicaltest.core.data.remote.response.pullrequests.PullRequestResponse
-import com.training.interviewtechnicaltest.core.data.remote.response.repositories.RepositoriesResponse
-import com.training.interviewtechnicaltest.core.domain.model.Repository
 
 class PullRequestsFactory {
 

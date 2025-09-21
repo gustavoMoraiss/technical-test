@@ -8,7 +8,7 @@ class ParamsInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
         val url = request.url.newBuilder()
-            .addQueryParameter(Constants.LANGUAGUE_PARAM, Constants.LANGUAGUE_VALUE)
+            .addQueryParameter(Constants.LANGUAGE_PARAM, Constants.LANGUAGE_VALUE)
             .build()
 
         val newRequest = request.newBuilder()

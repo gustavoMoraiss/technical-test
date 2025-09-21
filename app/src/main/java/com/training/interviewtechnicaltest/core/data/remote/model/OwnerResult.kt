@@ -7,4 +7,13 @@ data class OwnerResult(
     val avatarUrl: String,
     @SerializedName("login")
     val login: String,
-)
+){
+    companion object{
+        fun createEmpty() = OwnerResult(
+            avatarUrl = "",
+            login = ""
+        )
+    }
+}
+
+fun OwnerResult?.createSafe() = this ?: OwnerResult.createEmpty()

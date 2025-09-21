@@ -4,7 +4,7 @@ import androidx.paging.PagingData
 import com.nhaarman.mockitokotlin2.whenever
 import com.training.interviewtechnicaltest.TestDispatcherRule
 import com.training.interviewtechnicaltest.core.domain.model.RepositoriesFactory
-import com.training.interviewtechnicaltest.repositories_feature.data.mapper.toRepository
+import com.training.interviewtechnicaltest.repositories_feature.data.mapper.toRepositoryModel
 import com.training.interviewtechnicaltest.repositories_feature.domain.usecase.RepositoriesUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
@@ -15,7 +15,6 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import com.google.common.truth.Truth.assertThat
-import com.google.gson.JsonSyntaxException
 import com.training.interviewtechnicaltest.repositories_feature.presentation.RepositoriesViewModel
 import kotlinx.coroutines.test.runTest
 
@@ -34,7 +33,7 @@ class RepositoriesViewModelTest {
     }
 
     private val fakePagingDataRepositories = PagingData.from(
-        RepositoriesFactory.create(RepositoriesFactory.RepositoriesType.Default).repositories.toRepository()
+        RepositoriesFactory.create(RepositoriesFactory.RepositoriesType.Default).repositories.toRepositoryModel()
     )
 
     @Test

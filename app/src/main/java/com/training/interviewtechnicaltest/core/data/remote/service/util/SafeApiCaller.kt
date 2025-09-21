@@ -65,10 +65,6 @@ open class SafeApiCaller(private val backgroundDispatcher: CoroutineDispatcher =
 
     private fun getAPIErrorAndCreateAPIException(response: Response<*>?): APIException {
         val networkErrorMessage = NetworkErrorMessage(response?.errorBody().toString())
-
-        val errorCode = response?.code()
-        val errorMessage = response?.message()
-
         return generateGenericHttpError(response, networkErrorMessage)
     }
 
